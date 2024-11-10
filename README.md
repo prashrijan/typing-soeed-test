@@ -24,7 +24,7 @@ A web-based Typing Speed Test application that measures a user's typing speed in
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/typing-speed-test.git
+   git clone https://github.com/prashrijan/typing-speed-test.git
 
    ```
 
