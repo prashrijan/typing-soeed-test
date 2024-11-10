@@ -19,28 +19,61 @@ paragraph.style.display = "none";
 result.style.display = "none";
 textArea.disabled = true;
 
+let start = 0;
+let end = 0;
+let currentParagraph = "";
+
 button.addEventListener("click", () => {
   if (button.textContent === "Done") {
-    textArea.disabled = true;
-    paragraph.style.display = "none";
-    button.textContent = "Start";
-    result.style.display = "inline-block";
+    if (
+      textArea.value.trim() &&
+      textArea.value.trim() === currentParagraph.trim()
+    ) {
+      textArea.disabled = true;
+      paragraph.style.display = "none";
+      button.textContent = "Start";
+      result.style.display = "inline-block";
+      end = endTime();
+      const wpm = calculateTypingSpeed(start, end, currentParagraph);
+
+      result.textContent = `Typing Speed: ${wpm.toFixed(2)} WPM.`;
+    } else {
+      alert("Please complete the paragraph correctly before submitting.");
+    }
   } else {
-    generateAParagrah();
-    console.log(button.textContent);
+    currentParagraph = generateAParagrah();
+    textArea.value = "";
     textArea.disabled = false;
     button.textContent = "Done";
     result.style.display = "none";
+    start = startTime();
   }
 });
+
+const startTime = () => {
+  return new Date().getTime();
+};
+
+const endTime = () => {
+  return new Date().getTime();
+};
 
 const generateAParagrah = () => {
   let randomIndex = generateRandomIndex();
   let words = paragraphs[randomIndex];
   paragraph.textContent = words;
   paragraph.style.display = "inline-block";
+  return words;
 };
 
 const generateRandomIndex = () => {
   return Math.floor(Math.random() * paragraphs.length);
+};
+
+const calculateTypingSpeed = (start, end, words) => {
+  let wordCount = words.split(" ").length;
+
+  let timeTakenInMin = (end - start) / 60000;
+
+  return wordCount / timeTakenInMin;
 };
