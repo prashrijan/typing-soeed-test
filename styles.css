@@ -33,11 +33,14 @@ body {
 
 p {
   font-size: 1.2rem;
+  text-align: center;
+  width: 50%;
+  line-height: 1.6;
 }
 
 textarea {
   height: 15rem;
-  width: 25rem;
+  width: 50%;
   padding: 1rem;
   border: none;
   outline: none;
